@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Status | Food Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .payment-status-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+        }
+
+        .payment-status-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .status-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: scaleIn 0.5s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            color: #2ecc71;
+        }
+
+        .failure-icon {
+            color: #e74c3c;
+        }
+
+        .payment-status-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2d3436;
+        }
+
+        .payment-status-message {
+            color: #636e72;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .payment-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .payment-details div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-details div:last-child {
+            margin-bottom: 0;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #dee2e6;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff6b81;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #2d3436;
+        }
+
+        .btn-secondary:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+
+        .order-number {
+            font-family: monospace;
+            background: #f1f3f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #495057;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            position: absolute;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotateZ(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000px) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-status-container">
+        <div class="payment-status-card" id="statusCard">
+            <!-- Content will be dynamically inserted by JavaScript -->
+        </div>
+    </div>
+    <script>
+        // Function to generate random number within a range
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Function to create confetti effect
+        function createConfetti() {
+            const colors = ['#ff4757', '#2ecc71', '#ffd32a', '#3498db'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = random(0, 100) + 'vw';
+                confetti.style.animationDelay = random(0, 5) + 's';
+                confetti.style.backgroundColor = colors[Math.floor(random(0, colors.length))];
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Function to get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                status: params.get('status'),
+                amount: params.get('amount'),
+                orderId: params.get('orderId')
+            };
+        }
+
+        // Function to display payment status
+        function displayPaymentStatus() {
+            const params = getUrlParams();
+            const statusCard = document.getElementById('statusCard');
+            const isSuccess = params.status === 'success';
+            
+            if (isSuccess) {
+                createConfetti();
+            }
+
+            statusCard.innerHTML = `
+                <div class="status-icon ${isSuccess ? 'success-icon' : 'failure-icon'}">
+                    <i class="fas ${isSuccess ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+                </div>
+                <h1 class="payment-status-title">
+                    ${isSuccess ? 'Payment Successful!' : 'Payment Failed'}
+                </h1>
+                <p class="payment-status-message">
+                    ${isSuccess 
+                        ? 'Thank you for your order! Your payment has been processed successfully.' 
+                        : 'We apologize, but there was an issue processing your payment. Please try again.'}
+                </p>
+                ${isSuccess ? `
+                    <div class="payment-details">
+                        <div>
+                            <span>Order ID:</span>
+                            <span class="order-number">#${params.orderId || '123456'}</span>
+                        </div>
+                        <div>
+                            <span>Amount Paid:</span>
+                            <span>$${params.amount || '0.00'}</span>
+                        </div>
+                    </div>
+                ` : ''}
+                <div class="action-buttons">
+                    ${isSuccess ? `
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                        <a href="/order-details?orderId=${params.orderId}&amount=${params.amount}" class="btn btn-secondary">
+                            <i class="fas fa-receipt"></i> View Order
+                        </a>
+                    ` : `
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-redo"></i> Try Again
+                        </a>
+                        <a href="/" class="btn btn-secondary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                    `}
+                </div>
+            `;
+        }
+
+        // Initialize the page
+        displayPaymentStatus();
+    </script>
+</body>
+</html>

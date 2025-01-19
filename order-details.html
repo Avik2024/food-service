@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details | Food Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .order-details-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .order-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .order-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .status-delivered {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-processing {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .order-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #2d3436;
+        }
+
+        .order-items {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+            align-items: center;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .item-details h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2d3436;
+        }
+
+        .item-details p {
+            color: #6c757d;
+            margin: 0;
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .order-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            color: #6c757d;
+        }
+
+        .summary-total {
+            border-top: 2px solid #e9ecef;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .delivery-timeline {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e9ecef;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+        }
+
+        .step-completed .step-icon {
+            background: #2ecc71;
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #ff6b81;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #2d3436;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                height: 100%;
+                width: 2px;
+                left: 20px;
+                top: 0;
+            }
+
+            .timeline-step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0;
+            }
+
+            .step-icon {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="order-details-container">
+        <div class="order-header">
+            <div>
+                <h1>Order #<span id="orderId">123456</span></h1>
+                <p class="order-date" id="orderDate">January 19, 2025 at 8:30 PM</p>
+            </div>
+            <div class="order-status status-delivered">
+                <i class="fas fa-check-circle"></i>
+                <span>Delivered</span>
+            </div>
+        </div>
+
+        <div class="order-info">
+            <div class="info-card">
+                <h3>Delivery Address</h3>
+                <p id="deliveryAddress">123 Main Street, Apt 4B, New York, NY 10001</p>
+            </div>
+            <div class="info-card">
+                <h3>Contact</h3>
+                <p id="contactInfo">+1 (555) 123-4567</p>
+            </div>
+            <div class="info-card">
+                <h3>Payment Method</h3>
+                <p>•••• •••• •••• 4242</p>
+            </div>
+        </div>
+
+        <div class="delivery-timeline">
+            <h2>Delivery Status</h2>
+            <div class="timeline">
+                <div class="timeline-step step-completed">
+                    <div class="step-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="step-text">Order Confirmed</div>
+                </div>
+                <div class="timeline-step step-completed">
+                    <div class="step-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="step-text">Preparing</div>
+                </div>
+                <div class="timeline-step step-completed">
+                    <div class="step-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="step-text">On the Way</div>
+                </div>
+                <div class="timeline-step step-completed">
+                    <div class="step-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="step-text">Delivered</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-items">
+            <h2>Order Items</h2>
+            <div id="orderItemsList">
+                <!-- Order items will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Delivery Fee</span>
+                <span id="deliveryFee">$2.99</span>
+            </div>
+            <div class="summary-row summary-total">
+                <span>Total</span>
+                <span id="total">$0.00</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/" class="action-btn btn-primary">
+                <i class="fas fa-home"></i>
+                Back to Home
+            </a>
+            <button class="action-btn btn-secondary" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                Print Receipt
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                orderId: params.get('orderId'),
+                amount: params.get('amount')
+            };
+        }
+
+        // Function to format date
+        function formatDate(date) {
+            return new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            }).format(date);
+        }
+
+        // Sample order items data (in a real app, this would come from your backend)
+        const orderItems = [
+            {
+                name: "Chicken Burger",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
+                price: 12.99,
+                quantity: 2,
+                notes: "Extra cheese"
+            },
+            {
+                name: "Margherita Pizza",
+                image: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=500",
+                price: 14.99,
+                quantity: 1,
+                notes: "No onions"
+            }
+        ];
+
+        // Function to populate order details
+        function populateOrderDetails() {
+            const params = getUrlParams();
+            
+            // Set order ID and date
+            document.getElementById('orderId').textContent = params.orderId || '123456';
+            document.getElementById('orderDate').textContent = formatDate(new Date());
+
+            // Populate order items
+            const orderItemsList = document.getElementById('orderItemsList');
+            let subtotal = 0;
+
+            orderItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>Quantity: ${item.quantity}</p>
+                        ${item.notes ? `<p>Notes: ${item.notes}</p>` : ''}
+                    </div>
+                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
+                `;
+                orderItemsList.appendChild(itemElement);
+            });
+
+            // Update summary
+            const deliveryFee = 2.99;
+            const total = subtotal + deliveryFee;
+
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('deliveryFee').textContent = `$${deliveryFee.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Initialize the page
+        populateOrderDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieHub - Premium Food Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> +1 234 567 890</span>
+                <span><i class="fas fa-envelope"></i> info@foodiehub.com</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <span>FoodieHub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#menu"><i class="fas fa-list"></i> Menu</a></li>
+                <li><a href="#special-offers"><i class="fas fa-gift"></i> Special Offers</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for dishes...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-total">
+            <div class="subtotal">
+                <span>Subtotal:</span>
+                <span>$<span id="cartSubtotal">0.00</span></span>
+            </div>
+            <div class="delivery-fee">
+                <span>Delivery Fee:</span>
+                <span>$<span id="deliveryFee">2.99</span></span>
+            </div>
+            <div class="total">
+                <span>Total:</span>
+                <span>$<span id="cartTotal">0.00</span></span>
+            </div>
+            <form id="payment-form" class="payment-form hidden">
+                <div id="payment-element">
+                    <!-- Stripe Elements will be inserted here -->
+                </div>
+                <button id="submit-payment" class="payment-button" type="submit">
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">Pay Now</span>
+                </button>
+                <div id="payment-message" class="payment-message"></div>
+            </form>
+            <button class="checkout-btn" onclick="initiateCheckout()">
+                <i class="fas fa-lock"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover the Best Food Delivery Experience</h1>
+            <p>From local favorites to premium restaurants, we deliver the finest cuisine to your doorstep</p>
+            <div class="hero-buttons">
+                <button onclick="scrollToMenu()" class="primary-btn">
+                    <i class="fas fa-utensils"></i> Explore Menu
+                </button>
+                <button class="secondary-btn">
+                    <i class="fas fa-clock"></i> Track Order
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories">
+        <h2>Browse by Category</h2>
+        <div class="category-grid">
+            <!-- Categories will be added dynamically via JavaScript -->
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <div class="menu-header">
+            <h2>Our Premium Selection</h2>
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pizza">Pizza</button>
+                <button class="filter-btn" data-filter="burger">Burgers</button>
+                <button class="filter-btn" data-filter="asian">Asian</button>
+                <button class="filter-btn" data-filter="dessert">Desserts</button>
+            </div>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+            <!-- Menu items will be added dynamically via JavaScript -->
+        </div>
+    </section>
+
+    <section id="special-offers" class="special-offers">
+        <h2>Special Offers</h2>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-content">
+                    <h3>20% OFF</h3>
+                    <p>On your first order</p>
+                    <span class="code">CODE: FIRST20</span>
+                </div>
+            </div>
+            <div class="offer-card">
+                <div class="offer-content">
+                    <h3>Free Delivery</h3>
+                    <p>On orders above $30</p>
+                    <span class="code">CODE: FREEDEL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-utensils"></i> FoodieHub</h3>
+                <p>Delivering happiness and great food to your doorstep since 2024.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Food Street, Cuisine City</li>
+                    <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope"></i> info@foodiehub.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get special offers and updates!</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FoodieHub. All rights reserved.</p>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js"></script>
+</body>
+</html>
