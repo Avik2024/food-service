@@ -19,90 +19,110 @@ const categories = [
         id: 'dessert',
         name: 'Desserts',
         icon: 'fas fa-ice-cream'
+    },
+    {
+        id: 'burgers',
+        name: 'Burgers',
+        icon: 'fas fa-hamburger'
+    },
+    {
+        id: 'wraps',
+        name: 'Wraps',
+        icon: 'fas fa-hamburger'
+    },
+    {
+        id: 'sides',
+        name: 'Sides',
+        icon: 'fas fa-hamburger'
+    },
+    {
+        id: 'salads',
+        name: 'Salads',
+        icon: 'fas fa-hamburger'
     }
 ];
 
-// Menu items
+// Menu items data
 const menuItems = [
     {
         id: 1,
-        name: "Margherita Pizza",
-        description: "Fresh tomatoes, mozzarella, and basil",
+        name: "Classic Chicken Burger",
         price: 12.99,
-        category: "pizza",
-        image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
+        category: "burgers",
         rating: 4.5,
-        preparationTime: "20-25 mins"
+        prepTime: "15-20 min",
+        description: "Juicy chicken patty with fresh lettuce, tomatoes, and our special sauce"
     },
     {
         id: 2,
-        name: "Pepperoni Pizza",
-        description: "Classic pepperoni with extra cheese",
+        name: "Margherita Pizza",
         price: 14.99,
+        image: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=500",
         category: "pizza",
-        image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80",
-        rating: 4.8,
-        preparationTime: "20-25 mins"
+        rating: 4.7,
+        prepTime: "20-25 min",
+        description: "Classic Italian pizza with fresh mozzarella, tomatoes, and basil"
     },
     {
         id: 3,
-        name: "Classic Burger",
-        description: "Beef patty with lettuce, tomato, and special sauce",
+        name: "Vegetarian Wrap",
         price: 9.99,
-        category: "burger",
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=500",
+        category: "wraps",
         rating: 4.3,
-        preparationTime: "15-20 mins"
+        prepTime: "10-15 min",
+        description: "Fresh vegetables, hummus, and feta cheese in a wheat tortilla"
     },
     {
         id: 4,
-        name: "Chicken Burger",
-        description: "Grilled chicken with avocado and bacon",
-        price: 11.99,
-        category: "burger",
-        image: "https://images.unsplash.com/photo-1513185158878-8d8c2a2a3da3?auto=format&fit=crop&w=600&q=80",
-        rating: 4.6,
-        preparationTime: "15-20 mins"
+        name: "Double Cheese Burger",
+        price: 15.99,
+        image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=500",
+        category: "burgers",
+        rating: 4.8,
+        prepTime: "15-20 min",
+        description: "Two beef patties with melted cheddar and special sauce"
     },
     {
         id: 5,
-        name: "Pad Thai",
-        description: "Rice noodles with shrimp and peanuts",
-        price: 13.99,
-        category: "asian",
-        image: "https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80",
-        rating: 4.7,
-        preparationTime: "20-25 mins"
+        name: "Pepperoni Pizza",
+        price: 16.99,
+        image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500",
+        category: "pizza",
+        rating: 4.6,
+        prepTime: "20-25 min",
+        description: "Classic pepperoni pizza with extra cheese and Italian herbs"
     },
     {
         id: 6,
-        name: "Chicken Fried Rice",
-        description: "Wok-fried rice with vegetables and egg",
+        name: "Chicken Caesar Wrap",
         price: 11.99,
-        category: "asian",
-        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=500",
+        category: "wraps",
         rating: 4.4,
-        preparationTime: "15-20 mins"
+        prepTime: "10-15 min",
+        description: "Grilled chicken with romaine lettuce and Caesar dressing"
     },
     {
         id: 7,
-        name: "Chocolate Cake",
-        description: "Rich chocolate layer cake with ganache",
-        price: 6.99,
-        category: "dessert",
-        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
-        rating: 4.9,
-        preparationTime: "5-10 mins"
+        name: "Spicy Chicken Wings",
+        price: 13.99,
+        image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=500",
+        category: "sides",
+        rating: 4.7,
+        prepTime: "15-20 min",
+        description: "Crispy wings tossed in our signature spicy sauce"
     },
     {
         id: 8,
-        name: "Ice Cream Sundae",
-        description: "Vanilla ice cream with hot fudge and nuts",
-        price: 5.99,
-        category: "dessert",
-        image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80",
+        name: "Greek Salad",
+        price: 10.99,
+        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500",
+        category: "salads",
         rating: 4.5,
-        preparationTime: "5-10 mins"
+        prepTime: "5-10 min",
+        description: "Fresh vegetables, olives, and feta cheese with olive oil dressing"
     }
 ];
 
@@ -267,58 +287,62 @@ function filterMenu(category) {
 }
 
 // Display menu items
-function displayMenu() {
-    const menuGrid = document.getElementById('menuGrid');
-    if (!menuGrid) return;
-
+function displayMenu(category = 'all') {
+    const menuGrid = document.querySelector('.menu-grid');
     menuGrid.innerHTML = '';
-    const filteredItems = currentFilter === 'all' 
+
+    const filteredItems = category === 'all' 
         ? menuItems 
-        : menuItems.filter(item => item.category === currentFilter);
+        : menuItems.filter(item => item.category === category);
 
     filteredItems.forEach(item => {
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
         menuItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="menu-item-content">
-                <h3>${item.name}</h3>
-                <div class="rating">
-                    ${getRatingStars(item.rating)}
-                    <span>${item.rating}</span>
+            <div class="item-image">
+                <img src="${item.image}" alt="${item.name}">
+            </div>
+            <div class="item-content">
+                <div class="item-header">
+                    <h3>${item.name}</h3>
+                    <div class="item-rating">
+                        ${getRatingStars(item.rating)}
+                        <span class="prep-time"><i class="far fa-clock"></i> ${item.prepTime}</span>
+                    </div>
                 </div>
-                <p>${item.description}</p>
-                <div class="menu-item-footer">
-                    <p class="price">$${item.price.toFixed(2)}</p>
-                    <p class="preparation-time"><i class="fas fa-clock"></i> ${item.preparationTime}</p>
+                <p class="item-description">${item.description}</p>
+                <div class="item-footer">
+                    <span class="price">$${item.price.toFixed(2)}</span>
+                    <button onclick="addToCart(${item.id})" class="add-to-cart-btn">
+                        <i class="fas fa-plus"></i> Add to Cart
+                    </button>
                 </div>
-                <button onclick="addToCart(${item.id})">
-                    <i class="fas fa-cart-plus"></i> Add to Cart
-                </button>
             </div>
         `;
         menuGrid.appendChild(menuItem);
     });
 }
 
-// Generate rating stars
+// Get rating stars HTML
 function getRatingStars(rating) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    let stars = '';
+    let starsHTML = '';
     
     for (let i = 0; i < fullStars; i++) {
-        stars += '<i class="fas fa-star"></i>';
-    }
-    if (hasHalfStar) {
-        stars += '<i class="fas fa-star-half-alt"></i>';
-    }
-    const emptyStars = 5 - Math.ceil(rating);
-    for (let i = 0; i < emptyStars; i++) {
-        stars += '<i class="far fa-star"></i>';
+        starsHTML += '<i class="fas fa-star"></i>';
     }
     
-    return stars;
+    if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+    }
+    
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star"></i>';
+    }
+    
+    return `<div class="stars">${starsHTML}</div>`;
 }
 
 // Toggle cart sidebar
