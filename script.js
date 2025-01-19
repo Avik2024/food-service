@@ -1,6 +1,11 @@
 // Menu categories
 const categories = [
     {
+        id: 'all',
+        name: 'All Items',
+        icon: 'fas fa-utensils'
+    },
+    {
         id: 'pizza',
         name: 'Pizza',
         icon: 'fas fa-pizza-slice'
@@ -13,251 +18,109 @@ const categories = [
     {
         id: 'asian',
         name: 'Asian',
-        icon: 'fas fa-utensils'
+        icon: 'fas fa-bowl-rice'
     },
     {
         id: 'dessert',
         name: 'Desserts',
         icon: 'fas fa-ice-cream'
-    },
-    {
-        id: 'burgers',
-        name: 'Burgers',
-        icon: 'fas fa-hamburger'
-    },
-    {
-        id: 'wraps',
-        name: 'Wraps',
-        icon: 'fas fa-hamburger'
-    },
-    {
-        id: 'sides',
-        name: 'Sides',
-        icon: 'fas fa-hamburger'
-    },
-    {
-        id: 'salads',
-        name: 'Salads',
-        icon: 'fas fa-hamburger'
     }
 ];
 
-// Menu items data
+// Menu items
 const menuItems = [
     {
         id: 1,
-        name: "Classic Chicken Burger",
+        name: "Margherita Pizza",
+        description: "Fresh tomatoes, mozzarella, and basil",
         price: 12.99,
-        image: "/images/chicken-burger.jpg",
-        category: "burgers",
+        category: "pizza",
+        image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=600&q=80",
         rating: 4.5,
-        prepTime: "15-20 min",
-        description: "Juicy chicken patty with fresh lettuce, tomatoes, and our special sauce"
+        preparationTime: "20-25 mins"
     },
     {
         id: 2,
-        name: "Margherita Pizza",
+        name: "Pepperoni Pizza",
+        description: "Classic pepperoni with extra cheese",
         price: 14.99,
-        image: "/images/margherita-pizza.jpg",
         category: "pizza",
-        rating: 4.7,
-        prepTime: "20-25 min",
-        description: "Classic Italian pizza with fresh mozzarella, tomatoes, and basil"
+        image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80",
+        rating: 4.8,
+        preparationTime: "20-25 mins"
     },
     {
         id: 3,
-        name: "Vegetarian Wrap",
+        name: "Classic Burger",
+        description: "Beef patty with lettuce, tomato, and special sauce",
         price: 9.99,
-        image: "/images/veg-wrap.jpg",
-        category: "wraps",
+        category: "burger",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
         rating: 4.3,
-        prepTime: "10-15 min",
-        description: "Fresh vegetables, hummus, and feta cheese in a wheat tortilla"
+        preparationTime: "15-20 mins"
     },
     {
         id: 4,
-        name: "Double Cheese Burger",
-        price: 15.99,
-        image: "/images/cheese-burger.jpg",
-        category: "burgers",
-        rating: 4.8,
-        prepTime: "15-20 min",
-        description: "Two beef patties with melted cheddar and special sauce"
+        name: "Chicken Burger",
+        description: "Grilled chicken with avocado and bacon",
+        price: 11.99,
+        category: "burger",
+        image: "https://images.unsplash.com/photo-1513185158878-8d8c2a2a3da3?auto=format&fit=crop&w=600&q=80",
+        rating: 4.6,
+        preparationTime: "15-20 mins"
     },
     {
         id: 5,
-        name: "Pepperoni Pizza",
-        price: 16.99,
-        image: "/images/pepperoni-pizza.jpg",
-        category: "pizza",
-        rating: 4.6,
-        prepTime: "20-25 min",
-        description: "Classic pepperoni pizza with extra cheese and Italian herbs"
+        name: "Pad Thai",
+        description: "Rice noodles with shrimp and peanuts",
+        price: 13.99,
+        category: "asian",
+        image: "https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80",
+        rating: 4.7,
+        preparationTime: "20-25 mins"
     },
     {
         id: 6,
-        name: "Chicken Caesar Wrap",
+        name: "Chicken Fried Rice",
+        description: "Wok-fried rice with vegetables and egg",
         price: 11.99,
-        image: "/images/caesar-wrap.jpg",
-        category: "wraps",
+        category: "asian",
+        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
         rating: 4.4,
-        prepTime: "10-15 min",
-        description: "Grilled chicken with romaine lettuce and Caesar dressing"
+        preparationTime: "15-20 mins"
     },
     {
         id: 7,
-        name: "Spicy Chicken Wings",
-        price: 13.99,
-        image: "/images/chicken-wings.jpg",
-        category: "sides",
-        rating: 4.7,
-        prepTime: "15-20 min",
-        description: "Crispy wings tossed in our signature spicy sauce"
+        name: "Chocolate Cake",
+        description: "Rich chocolate layer cake with ganache",
+        price: 6.99,
+        category: "dessert",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+        rating: 4.9,
+        preparationTime: "5-10 mins"
     },
     {
         id: 8,
-        name: "Greek Salad",
-        price: 10.99,
-        image: "/images/greek-salad.jpg",
-        category: "salads",
+        name: "Ice Cream Sundae",
+        description: "Vanilla ice cream with hot fudge and nuts",
+        price: 5.99,
+        category: "dessert",
+        image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80",
         rating: 4.5,
-        prepTime: "5-10 min",
-        description: "Fresh vegetables, olives, and feta cheese with olive oil dressing"
+        preparationTime: "5-10 mins"
     }
 ];
 
+// Cart array to store items
 let cart = [];
 let currentFilter = 'all';
 
-// Stripe test public key - replace with your actual test key
-const stripe = Stripe(process.env.STRIPE_PUBLIC_KEY || 'pk_test_TYooMQauvdEDq54NiTphI7jx');
-let elements;
-
-// Initialize Stripe Elements
-async function initializePayment() {
-    try {
-        const response = await fetch('/create-payment-intent', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                amount: Math.round(parseFloat(document.getElementById('cartTotal').textContent) * 100),
-                currency: 'usd'
-            })
-        });
-        
-        const { clientSecret } = await response.json();
-        
-        const appearance = {
-            theme: 'stripe',
-            variables: {
-                colorPrimary: '#ff4757',
-            }
-        };
-        
-        elements = stripe.elements({ appearance, clientSecret });
-        const paymentElement = elements.create('payment');
-        paymentElement.mount('#payment-element');
-
-        // Add form submission handler
-        const form = document.getElementById('payment-form');
-        form.addEventListener('submit', handlePaymentSubmission);
-    } catch (error) {
-        console.error('Payment initialization error:', error);
-        showNotification('Unable to initialize payment. Please try again.', 'error');
-    }
-}
-
-// Handle payment form submission
-async function handlePaymentSubmission(e) {
-    e.preventDefault();
-    setLoading(true);
-
-    const form = document.getElementById('payment-form');
-    const submitButton = document.getElementById('submit-payment');
-    submitButton.disabled = true;
-
-    try {
-        const { error } = await stripe.confirmPayment({
-            elements,
-            confirmParams: {
-                return_url: `${window.location.origin}/payment-success?amount=${document.getElementById('cartTotal').textContent}`,
-            },
-        });
-
-        if (error) {
-            const messageContainer = document.getElementById('payment-message');
-            messageContainer.textContent = error.message;
-            messageContainer.classList.add('error');
-            window.location.href = '/payment-failure';
-        }
-    } catch (error) {
-        const messageContainer = document.getElementById('payment-message');
-        messageContainer.textContent = 'An unexpected error occurred.';
-        messageContainer.classList.add('error');
-        window.location.href = '/payment-failure';
-    }
-
-    submitButton.disabled = false;
-    setLoading(false);
-}
-
-// Handle the checkout process
-async function initiateCheckout() {
-    if (cart.length === 0) {
-        showNotification('Your cart is empty!', 'error');
-        return;
-    }
-
-    try {
-        // Show payment form
-        document.querySelector('.checkout-btn').style.display = 'none';
-        const paymentForm = document.getElementById('payment-form');
-        paymentForm.classList.remove('hidden');
-        
-        // Initialize Stripe Elements
-        await initializePayment();
-        
-    } catch (error) {
-        showNotification('Unable to initialize payment. Please try again.', 'error');
-        console.error('Payment initialization error:', error);
-    }
-}
-
-// Handle successful payment
-function handleSuccessfulPayment() {
-    const messageContainer = document.getElementById('payment-message');
-    messageContainer.textContent = 'Payment successful! Processing your order...';
-    messageContainer.classList.add('success');
-    
-    // Clear cart and show success message
-    cart = [];
-    updateCart();
-    showNotification('Order placed successfully! Thank you for your purchase.', 'success');
-    
-    // Reset payment form
-    setTimeout(() => {
-        document.getElementById('payment-form').classList.add('hidden');
-        document.querySelector('.checkout-btn').style.display = 'block';
-        toggleCart();
-    }, 2000);
-}
-
-// Set loading state
-function setLoading(isLoading) {
-    const submitButton = document.getElementById('submit-payment');
-    const spinner = document.getElementById('spinner');
-    const buttonText = document.getElementById('button-text');
-
-    if (isLoading) {
-        submitButton.disabled = true;
-        spinner.classList.remove('hidden');
-        buttonText.classList.add('hidden');
-    } else {
-        submitButton.disabled = false;
-        spinner.classList.add('hidden');
-        buttonText.classList.remove('hidden');
-    }
-}
+// Initialize the page
+window.onload = function() {
+    displayCategories();
+    displayMenu();
+    setupEventListeners();
+};
 
 // Display categories
 function displayCategories() {
@@ -269,278 +132,156 @@ function displayCategories() {
         categoryItem.className = 'category-item';
         categoryItem.innerHTML = `
             <i class="${category.icon}"></i>
-            <h3>${category.name}</h3>
+            <span>${category.name}</span>
         `;
         categoryItem.addEventListener('click', () => filterMenu(category.id));
         categoryGrid.appendChild(categoryItem);
     });
 }
 
-// Filter menu items
-function filterMenu(category) {
-    currentFilter = category;
-    const buttons = document.querySelectorAll('.filter-btn');
-    buttons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === category);
-    });
-    displayMenu();
-}
-
 // Display menu items
-function displayMenu(category = 'all') {
-    console.log('Displaying menu for category:', category);
-    
+function displayMenu() {
     const menuGrid = document.getElementById('menuGrid');
-    if (!menuGrid) {
-        console.error('Menu grid element not found!');
-        return;
-    }
-    
-    console.log('Menu grid found, clearing contents...');
+    if (!menuGrid) return;
+
     menuGrid.innerHTML = '';
 
-    const filteredItems = category === 'all' 
+    const filteredItems = currentFilter === 'all' 
         ? menuItems 
-        : menuItems.filter(item => item.category === category);
-    
-    console.log('Filtered items:', filteredItems.length);
+        : menuItems.filter(item => item.category === currentFilter);
 
     filteredItems.forEach(item => {
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
         menuItem.innerHTML = `
-            <div class="item-image">
-                <img src="${item.image}" alt="${item.name}" onerror="handleImageError(this)">
-            </div>
-            <div class="item-content">
-                <div class="item-header">
-                    <h3>${item.name}</h3>
-                    <div class="item-rating">
-                        ${getRatingStars(item.rating)}
-                        <span class="prep-time"><i class="far fa-clock"></i> ${item.prepTime}</span>
-                    </div>
+            <img src="${item.image}" alt="${item.name}" onerror="handleImageError(this)">
+            <div class="menu-item-content">
+                <h3>${item.name}</h3>
+                <div class="rating">
+                    ${getRatingStars(item.rating)}
+                    <span>${item.rating}</span>
                 </div>
-                <p class="item-description">${item.description}</p>
-                <div class="item-footer">
-                    <span class="price">$${item.price.toFixed(2)}</span>
-                    <button onclick="addToCart(${item.id})" class="add-to-cart-btn">
-                        <i class="fas fa-plus"></i> Add to Cart
-                    </button>
+                <p>${item.description}</p>
+                <div class="menu-item-footer">
+                    <p class="price">$${item.price.toFixed(2)}</p>
+                    <p class="preparation-time"><i class="fas fa-clock"></i> ${item.preparationTime}</p>
                 </div>
+                <button onclick="addToCart(${item.id})">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
             </div>
         `;
         menuGrid.appendChild(menuItem);
     });
-    
-    console.log('Menu items added to grid');
 }
 
-// Get rating stars HTML
+// Filter menu items
+function filterMenu(category) {
+    currentFilter = category;
+    displayMenu();
+    
+    // Update active state of filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+// Generate rating stars
 function getRatingStars(rating) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    let starsHTML = '';
+    
+    let stars = '';
     
     for (let i = 0; i < fullStars; i++) {
-        starsHTML += '<i class="fas fa-star"></i>';
+        stars += '<i class="fas fa-star"></i>';
     }
-    
     if (hasHalfStar) {
-        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+        stars += '<i class="fas fa-star-half-alt"></i>';
     }
-    
     const emptyStars = 5 - Math.ceil(rating);
     for (let i = 0; i < emptyStars; i++) {
-        starsHTML += '<i class="far fa-star"></i>';
+        stars += '<i class="far fa-star"></i>';
     }
     
-    return `<div class="stars">${starsHTML}</div>`;
+    return stars;
+}
+
+// Add to cart function
+function addToCart(itemId) {
+    const item = menuItems.find(item => item.id === itemId);
+    if (item) {
+        cart.push(item);
+        updateCartDisplay();
+        // Show some feedback
+        showToast('Item added to cart!');
+    }
+}
+
+// Update cart display
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartCount = document.getElementById('cartCount');
+    
+    if (cartItems && cartTotal && cartCount) {
+        cartItems.innerHTML = '';
+        let total = 0;
+        
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <h4>${item.name}</h4>
+                    <p>$${item.price.toFixed(2)}</p>
+                </div>
+            `;
+            cartItems.appendChild(cartItem);
+            total += item.price;
+        });
+        
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+        cartCount.textContent = cart.length;
+    }
+}
+
+// Show toast message
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 2000);
+    }, 100);
 }
 
 // Toggle cart sidebar
 function toggleCart() {
     const cartSidebar = document.getElementById('cartSidebar');
-    cartSidebar.classList.toggle('active');
-}
-
-// Add item to cart
-function addToCart(itemId) {
-    const item = menuItems.find(item => item.id === itemId);
-    if (item) {
-        const existingItem = cart.find(cartItem => cartItem.id === itemId);
-        if (existingItem) {
-            existingItem.quantity += 1;
-            showNotification(`Added another ${item.name} to cart!`);
-        } else {
-            cart.push({ ...item, quantity: 1 });
-            showNotification(`${item.name} added to cart!`);
-        }
-        
-        // Animate cart icon
-        const cartIcon = document.querySelector('.cart-icon');
-        cartIcon.style.transform = 'scale(1.2)';
-        setTimeout(() => {
-            cartIcon.style.transform = 'scale(1)';
-        }, 200);
-
-        updateCart();
-        toggleCart(); // Show cart sidebar when item is added
+    if (cartSidebar) {
+        cartSidebar.classList.toggle('open');
     }
-}
-
-// Show notification
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerHTML = `
-        <i class="${type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'}"></i>
-        ${message}
-    `;
-    document.body.appendChild(notification);
-    
-    // Trigger animation
-    setTimeout(() => {
-        notification.classList.add('show');
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 500);
-        }, 2000);
-    }, 100);
-}
-
-// Update cart display
-function updateCart() {
-    const cartItems = document.getElementById('cartItems');
-    const cartCount = document.getElementById('cartCount');
-    const cartSubtotal = document.getElementById('cartSubtotal');
-    const cartTotal = document.getElementById('cartTotal');
-    const deliveryFee = parseFloat(document.getElementById('deliveryFee').textContent);
-    
-    cartItems.innerHTML = '';
-    let subtotal = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <div class="cart-item-details">
-                <h3>${item.name}</h3>
-                <p>$${item.price.toFixed(2)} × ${item.quantity}</p>
-            </div>
-            <div class="cart-item-actions">
-                <p>$${itemTotal.toFixed(2)}</p>
-                <div class="quantity-controls">
-                    <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <span>${item.quantity}</span>
-                    <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                <button onclick="removeFromCart(${item.id})" class="remove-btn" title="Remove item">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
-        cartItems.appendChild(cartItem);
-    });
-
-    const total = subtotal + deliveryFee;
-    
-    // Update cart count with animation
-    cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    // Update totals with animation
-    cartSubtotal.textContent = subtotal.toFixed(2);
-    cartTotal.textContent = total.toFixed(2);
-
-    // Show empty cart message if needed
-    if (cart.length === 0) {
-        cartItems.innerHTML = `
-            <div class="empty-cart">
-                <i class="fas fa-shopping-basket"></i>
-                <p>Your cart is empty</p>
-                <button onclick="scrollToMenu()" class="primary-btn">
-                    <i class="fas fa-utensils"></i> Browse Menu
-                </button>
-            </div>
-        `;
-    }
-}
-
-// Update item quantity
-function updateQuantity(itemId, newQuantity) {
-    if (newQuantity < 1) {
-        removeFromCart(itemId);
-        return;
-    }
-    
-    const item = cart.find(item => item.id === itemId);
-    if (item) {
-        item.quantity = newQuantity;
-        updateCart();
-    }
-}
-
-// Remove item from cart
-function removeFromCart(itemId) {
-    const item = cart.find(item => item.id === itemId);
-    if (item) {
-        showNotification(`${item.name} removed from cart`, 'error');
-    }
-    cart = cart.filter(item => item.id !== itemId);
-    updateCart();
-}
-
-// Checkout function
-function checkout() {
-    initiateCheckout();
-}
-
-// Scroll to menu section
-function scrollToMenu() {
-    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded');
-    initializeMenu();
-});
-
-// Initialize menu and setup event listeners
-function initializeMenu() {
-    console.log('Initializing menu...');
-    displayMenu('all');
-    setupEventListeners();
 }
 
 // Setup event listeners
 function setupEventListeners() {
-    console.log('Setting up event listeners...');
-    
     // Add event listeners for filter buttons
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    console.log('Filter buttons found:', filterButtons.length);
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            console.log('Filter clicked:', this.getAttribute('data-category'));
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            // Get the category from the button's data attribute
-            const category = this.getAttribute('data-category');
-            // Display filtered menu items
-            displayMenu(category);
-        });
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => filterMenu(button.dataset.filter));
     });
 
     // Cart button click event
@@ -554,4 +295,10 @@ function setupEventListeners() {
     if (closeCartBtn) {
         closeCartBtn.addEventListener('click', toggleCart);
     }
+}
+
+// Handle image errors
+function handleImageError(img) {
+    img.onerror = null; // Prevent infinite loop
+    img.src = '/images/placeholder.svg';
 }
