@@ -1,9 +1,14 @@
 const express = require('express');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // Replace with your Stripe secret key
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
+const path = require('path');
 
-app.use(express.static('.'));
+app.use(express.static(path.join(__dirname)));
 app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.post('/create-payment-intent', async (req, res) => {
     try {
@@ -15,7 +20,7 @@ app.post('/create-payment-intent', async (req, res) => {
 
         // Create a PaymentIntent with the order amount and currency
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: Math.round(amount), // Ensure amount is an integer
+            amount: Math.round(amount),
             currency,
             automatic_payment_methods: {
                 enabled: true,
@@ -52,16 +57,17 @@ app.get('/payment-failure', (req, res) => {
 
 // Serve payment result page
 app.get('/payment-result.html', (req, res) => {
-    res.sendFile(__dirname + '/payment-result.html');
-});
-
-app.get('/payment-confirmation', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname, 'payment-result.html'));
 });
 
 // Handle order details page
 app.get('/order-details', (req, res) => {
-    res.sendFile(__dirname + '/order-details.html');
+    res.sendFile(path.join(__dirname, 'order-details.html'));
+});
+
+// Fallback route for all other requests
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const port = process.env.PORT || 3001;

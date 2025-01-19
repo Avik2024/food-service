@@ -110,7 +110,7 @@ let cart = [];
 let currentFilter = 'all';
 
 // Stripe test public key - replace with your actual test key
-const stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripe = Stripe(process.env.STRIPE_PUBLIC_KEY || 'pk_test_TYooMQauvdEDq54NiTphI7jx');
 let elements;
 
 // Initialize Stripe Elements
