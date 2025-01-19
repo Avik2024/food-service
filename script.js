@@ -288,17 +288,22 @@ function filterMenu(category) {
 
 // Display menu items
 function displayMenu(category = 'all') {
+    console.log('Displaying menu for category:', category);
+    
     const menuGrid = document.getElementById('menuGrid');
     if (!menuGrid) {
         console.error('Menu grid element not found!');
         return;
     }
-
+    
+    console.log('Menu grid found, clearing contents...');
     menuGrid.innerHTML = '';
 
     const filteredItems = category === 'all' 
         ? menuItems 
         : menuItems.filter(item => item.category === category);
+    
+    console.log('Filtered items:', filteredItems.length);
 
     filteredItems.forEach(item => {
         const menuItem = document.createElement('div');
@@ -326,6 +331,8 @@ function displayMenu(category = 'all') {
         `;
         menuGrid.appendChild(menuItem);
     });
+    
+    console.log('Menu items added to grid');
 }
 
 // Get rating stars HTML
@@ -503,16 +510,28 @@ function scrollToMenu() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
+    initializeMenu();
+});
+
+// Initialize menu and setup event listeners
+function initializeMenu() {
+    console.log('Initializing menu...');
     displayMenu('all');
     setupEventListeners();
-});
+}
 
 // Setup event listeners
 function setupEventListeners() {
+    console.log('Setting up event listeners...');
+    
     // Add event listeners for filter buttons
     const filterButtons = document.querySelectorAll('.filter-btn');
+    console.log('Filter buttons found:', filterButtons.length);
+    
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
+            console.log('Filter clicked:', this.getAttribute('data-category'));
             // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             // Add active class to clicked button
