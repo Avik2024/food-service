@@ -48,7 +48,7 @@ const menuItems = [
         id: 1,
         name: "Classic Chicken Burger",
         price: 12.99,
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
+        image: "/images/chicken-burger.jpg",
         category: "burgers",
         rating: 4.5,
         prepTime: "15-20 min",
@@ -58,7 +58,7 @@ const menuItems = [
         id: 2,
         name: "Margherita Pizza",
         price: 14.99,
-        image: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=500",
+        image: "/images/margherita-pizza.jpg",
         category: "pizza",
         rating: 4.7,
         prepTime: "20-25 min",
@@ -68,7 +68,7 @@ const menuItems = [
         id: 3,
         name: "Vegetarian Wrap",
         price: 9.99,
-        image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=500",
+        image: "/images/veg-wrap.jpg",
         category: "wraps",
         rating: 4.3,
         prepTime: "10-15 min",
@@ -78,7 +78,7 @@ const menuItems = [
         id: 4,
         name: "Double Cheese Burger",
         price: 15.99,
-        image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=500",
+        image: "/images/cheese-burger.jpg",
         category: "burgers",
         rating: 4.8,
         prepTime: "15-20 min",
@@ -88,7 +88,7 @@ const menuItems = [
         id: 5,
         name: "Pepperoni Pizza",
         price: 16.99,
-        image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500",
+        image: "/images/pepperoni-pizza.jpg",
         category: "pizza",
         rating: 4.6,
         prepTime: "20-25 min",
@@ -98,7 +98,7 @@ const menuItems = [
         id: 6,
         name: "Chicken Caesar Wrap",
         price: 11.99,
-        image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=500",
+        image: "/images/caesar-wrap.jpg",
         category: "wraps",
         rating: 4.4,
         prepTime: "10-15 min",
@@ -108,7 +108,7 @@ const menuItems = [
         id: 7,
         name: "Spicy Chicken Wings",
         price: 13.99,
-        image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=500",
+        image: "/images/chicken-wings.jpg",
         category: "sides",
         rating: 4.7,
         prepTime: "15-20 min",
@@ -118,7 +118,7 @@ const menuItems = [
         id: 8,
         name: "Greek Salad",
         price: 10.99,
-        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500",
+        image: "/images/greek-salad.jpg",
         category: "salads",
         rating: 4.5,
         prepTime: "5-10 min",
@@ -288,7 +288,12 @@ function filterMenu(category) {
 
 // Display menu items
 function displayMenu(category = 'all') {
-    const menuGrid = document.querySelector('.menu-grid');
+    const menuGrid = document.getElementById('menuGrid');
+    if (!menuGrid) {
+        console.error('Menu grid element not found!');
+        return;
+    }
+
     menuGrid.innerHTML = '';
 
     const filteredItems = category === 'all' 
@@ -300,7 +305,7 @@ function displayMenu(category = 'all') {
         menuItem.className = 'menu-item';
         menuItem.innerHTML = `
             <div class="item-image">
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${item.image}" alt="${item.name}" onerror="handleImageError(this)">
             </div>
             <div class="item-content">
                 <div class="item-header">
@@ -497,12 +502,37 @@ function scrollToMenu() {
 }
 
 // Initialize the page
-window.onload = function() {
-    displayCategories();
-    displayMenu();
-    
+document.addEventListener('DOMContentLoaded', function() {
+    displayMenu('all');
+    setupEventListeners();
+});
+
+// Setup event listeners
+function setupEventListeners() {
     // Add event listeners for filter buttons
-    document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', () => filterMenu(button.dataset.filter));
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            // Get the category from the button's data attribute
+            const category = this.getAttribute('data-category');
+            // Display filtered menu items
+            displayMenu(category);
+        });
     });
-};
+
+    // Cart button click event
+    const cartBtn = document.getElementById('cartBtn');
+    if (cartBtn) {
+        cartBtn.addEventListener('click', toggleCart);
+    }
+
+    // Close cart button click event
+    const closeCartBtn = document.getElementById('closeCart');
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', toggleCart);
+    }
+}

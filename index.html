@@ -80,43 +80,45 @@
         </div>
     </div>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Discover the Best Food Delivery Experience</h1>
-            <p>From local favorites to premium restaurants, we deliver the finest cuisine to your doorstep</p>
-            <div class="hero-buttons">
-                <button onclick="scrollToMenu()" class="primary-btn">
-                    <i class="fas fa-utensils"></i> Explore Menu
-                </button>
-                <button class="secondary-btn">
-                    <i class="fas fa-clock"></i> Track Order
-                </button>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Discover the Best Food Delivery Experience</h1>
+                <p>From local favorites to premium restaurants, we deliver the finest cuisine to your doorstep</p>
+                <div class="hero-buttons">
+                    <button onclick="scrollToMenu()" class="primary-btn">
+                        <i class="fas fa-utensils"></i> Explore Menu
+                    </button>
+                    <button class="secondary-btn">
+                        <i class="fas fa-clock"></i> Track Order
+                    </button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="categories" class="categories">
-        <h2>Browse by Category</h2>
-        <div class="category-grid">
-            <!-- Categories will be added dynamically via JavaScript -->
-        </div>
-    </section>
-
-    <section id="menu" class="menu-section">
-        <div class="menu-header">
-            <h2>Our Premium Selection</h2>
-            <div class="menu-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="pizza">Pizza</button>
-                <button class="filter-btn" data-filter="burger">Burgers</button>
-                <button class="filter-btn" data-filter="asian">Asian</button>
-                <button class="filter-btn" data-filter="dessert">Desserts</button>
+        <section id="categories" class="categories">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <!-- Categories will be added dynamically via JavaScript -->
             </div>
-        </div>
-        <div class="menu-grid" id="menuGrid">
-            <!-- Menu items will be added dynamically via JavaScript -->
-        </div>
-    </section>
+        </section>
+
+        <section id="menu" class="menu-section">
+            <div class="section-header">
+                <h2>Our Premium Selection</h2>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="burger">Burgers</button>
+                    <button class="filter-btn" data-filter="asian">Asian</button>
+                    <button class="filter-btn" data-filter="dessert">Desserts</button>
+                </div>
+            </div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be added dynamically via JavaScript -->
+            </div>
+        </section>
+    </main>
 
     <section id="special-offers" class="special-offers">
         <h2>Special Offers</h2>
@@ -187,6 +189,12 @@
         </div>
     </footer>
 
+    <script>
+        function handleImageError(img) {
+            img.onerror = null; // Prevent infinite loop
+            img.src = '/images/placeholder.svg';
+        }
+    </script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="script.js"></script>
 </body>
